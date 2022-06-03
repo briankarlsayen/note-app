@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  api:
+    container_name: nest-api
+    build:
+      context: .
+      target: development
+    volumes:
+    - .:/usr/src/app
+    - /usr/src/app/node_modules
+    ports:
+      - 5000:5000
+    depends_on:
+      - pg-db
+    env_file:
+      - .env
+
+  pg-db:
+    container_name: pg-db
+    image: postgres:13
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: todo-db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # - ./db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql created init datas
+
+  test-pg-db:
+    container_name: test-pg-db
+    image: postgres:13
+    ports:
+      - 5435:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: nest
+
+volumes:
+  pgdata:
