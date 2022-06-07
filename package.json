@@ -6,6 +6,7 @@
   "scripts": {
     "db:dev:rm": "docker compose rm pg-db -s -f -v",
     "db:dev:up": "docker compose up pg-db -d",
+    "db:dev":"npm run db:dev:rm && npm run db:dev:up",
     "dev": "nodemon server.js"
   },
   "keywords": [],

@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, DataTypes) {
-    await queryInterface.createTable('notes', {
+    await queryInterface.createTable('items', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,13 +16,21 @@ module.exports = {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      description: {
+      type: {
         type: DataTypes.STRING,
         allowNull: false,
       },
       body: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      checked: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
+      noteId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
       },
       isDeleted: {
         type: DataTypes.BOOLEAN,
@@ -39,6 +47,6 @@ module.exports = {
     });
   },
   async down(queryInterface, DataTypes) {
-    await queryInterface.dropTable('notes');
+    await queryInterface.dropTable('items');
   }
 };
