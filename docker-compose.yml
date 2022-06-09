@@ -5,7 +5,8 @@ services:
     container_name: nest-api
     build:
       context: .
-      target: development
+      dockerfile: Dockerfile
+      # target: development
     volumes:
     - .:/usr/src/app
     - /usr/src/app/node_modules
