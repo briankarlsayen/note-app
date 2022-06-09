@@ -3,7 +3,6 @@ const app = express();
 const { sequelize, Note, Item } = require('./models')
 require("dotenv").config();
 const PORT = process.env.PORT;
-
 // connect to DB
 // const dbConnect = async() => {
 //   try {
